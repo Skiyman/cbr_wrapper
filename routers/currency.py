@@ -14,7 +14,7 @@ currency_router = APIRouter(
 
 
 @currency_router.get("")
-async def get_today_currency_rate() -> Dict[str, CurseOnDateModel]:
+async def get_today_currency_rate() -> list[CurseOnDateModel]:
     args_data = [datetime.today().isoformat()]
     response = await request_and_parse(xml_templates.get_curse_on_date, args_data)
     return response

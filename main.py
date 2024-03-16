@@ -8,12 +8,6 @@ from routers.enum_currencies import enum_currencies_router
 app = FastAPI()
 
 
-@app.get('/')
-async def home() -> dict:
-    return {
-        "msg": "Hello World!!!"
-    }
-
 
 app.include_router(currency_router)
 app.include_router(enum_currencies_router)
