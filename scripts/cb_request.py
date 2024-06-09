@@ -1,5 +1,4 @@
 import aiohttp
-import requests
 
 """
 Make requests to CB api

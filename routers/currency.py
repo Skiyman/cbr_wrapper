@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Dict
 
 from fastapi import APIRouter
 
@@ -20,14 +19,19 @@ async def get_today_currency_rate() -> list[CurseOnDateModel]:
     return response
 
 
-@currency_router.get("/{date}")
+@currency_router.get("/major")
+async def get_major_currencies():
+    pass
+
+
+@currency_router.get("/rate/{date}")
 async def get_date_currency_rate(date: str) -> list[CurseOnDateModel]:
     args_data = [datetime.fromisoformat(date).isoformat()]
     response = await request_and_parse(xml_templates.get_curse_on_date, args_data)
     return response
 
 
-@currency_router.put("/{currency_code}")
+@currency_router.put("/dynamic/{currency_code}")
 async def get_currency_dynamic(currency_code: str, begin_date: str, end_date: str) -> list[CurseDynamicModel]:
     args_data = [begin_date, end_date, currency_code]
     response = await request_and_parse(xml_templates.get_curs_dynamic, args_data)

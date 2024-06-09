@@ -1,3 +1,10 @@
+'''
+https://www.cbr.ru/FO_ZoomWS/FinOrg.asmx - Поиск по инн и огрн
+https://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx - Ежедневная информация
+https://www.cbr.ru/secinfo/secinfo.asmx - Информация по рынку ценных бумаг
+https://www.cbr.ru/CreditInfoWebServ/CreditOrgInfo.asmx - Справочник по кредитным организациям
+'''
+
 """
 Получение всей оперативной (ежедневной) информации
 """
