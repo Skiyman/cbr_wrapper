@@ -1,6 +1,7 @@
 import asyncio
 from datetime import datetime, timedelta
 
+from models.xml_models import MajorCurrencyModel
 from scripts.request_and_parse import request_and_parse
 from templates import xml_templates
 
@@ -15,14 +16,19 @@ class GetMajorCurrenciesRequest:
         self.records = []
         self.str_code = currency_str_code
 
-    async def run(self):
+    async def run(self) -> MajorCurrencyModel | None:
         self.current_date = await self.get_latest_record_date()
         await self.get_currencies_codes()
         self.records = await self.get_course_dynamic(self.code)
+        if not self.records:
+            return None
+
+        for record in self.records:
+            record["currency_rate"] = round(float(record["currency_rate"]), 2)
 
         response = {
             'name': self.str_code,
-            'course': self.records[0]["currency_rate"],
+            'course': round(self.records[0]["currency_rate"], 2),
             "is_more": self.compare_course(self.records[0]["currency_rate"], self.records[1]["currency_rate"])
         }
 
@@ -35,7 +41,7 @@ class GetMajorCurrenciesRequest:
             })
 
         response["previous_days"] = previous_days
-        print(response)
+        return MajorCurrencyModel.parse_obj(response)
 
     @staticmethod
     def compare_course(current_course, old_course):

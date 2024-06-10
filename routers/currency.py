@@ -2,7 +2,8 @@ from datetime import datetime
 
 from fastapi import APIRouter
 
-from models.xml_models import CurseOnDateModel, CurseDynamicModel
+from models.xml_models import CurseOnDateModel, CurseDynamicModel, MajorCurrencyModel
+from scripts.get_major_currencies import GetMajorCurrenciesRequest
 from scripts.request_and_parse import request_and_parse
 from templates import xml_templates
 
@@ -19,9 +20,11 @@ async def get_today_currency_rate() -> list[CurseOnDateModel]:
     return response
 
 
-@currency_router.get("/major")
-async def get_major_currencies():
-    pass
+@currency_router.get("/major/{currency_str_code}")
+async def get_major_currencies(currency_str_code: str) -> MajorCurrencyModel | None:
+    get_major_currencies_request = GetMajorCurrenciesRequest(currency_str_code)
+    response = await get_major_currencies_request.run()
+    return response
 
 
 @currency_router.get("/rate/{date}")
