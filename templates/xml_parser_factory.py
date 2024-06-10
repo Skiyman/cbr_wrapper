@@ -3,6 +3,7 @@ from typing import Type
 from templates.enum_valutes.parser import EnumValutesParser
 from templates.get_curs_dynamic.parser import GetCursDynamicParser
 from templates.get_curse_on_date.parser import GetCurseOnDateParser
+from templates.get_latest_date_time.parser import GetLatestDateTimeParser
 from templates.iparser import IParser
 
 """
@@ -17,6 +18,7 @@ class XmlParserFactory:
             "get_curse_on_date": GetCurseOnDateParser,
             "enum_valutes": EnumValutesParser,
             "get_curs_dynamic": GetCursDynamicParser,
+            "get_latest_date_time": GetLatestDateTimeParser,
         }
 
         class_ = classes.get(class_name, None)

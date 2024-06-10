@@ -1,3 +1,5 @@
+from typing import List
+
 from pydantic import BaseModel
 
 
@@ -19,14 +21,14 @@ class EnumCurseModel(BaseModel):
 class ShortCurrencyModel(BaseModel):
     date: str
     course: float
-    is_more: bool
+    is_more: int
 
 
 class MajorCurrencyModel(BaseModel):
     name: str
     course: float
-    is_more: bool
-    previous_days: [ShortCurrencyModel]
+    is_more: int
+    previous_days: List[ShortCurrencyModel]
 
 
 class CurseDynamicModel(BaseModel):
