@@ -1,12 +1,15 @@
 version: '3.9'
 
 services:
+  nginx:
+    build:  ./nginx
+    image: cbrwrapper-nginx
+    ports:
+      - 1488:80
+
   backend:
     build: .
     image: cbrwrapper-backend
-    ports:
-      - "1488:8000"
+
   frontend:
     image: cbrwrapper-frontend
-    ports:
-      - "5432:3000"
