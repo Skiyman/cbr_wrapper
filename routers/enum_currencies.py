@@ -10,7 +10,7 @@ enum_currencies_router = APIRouter(
 )
 
 
-@enum_currencies_router.get("/")
+@enum_currencies_router.get("")
 async def get_enum_currencies() -> list[EnumCurseModel]:
     args_data = ["false"]
     response = await request_and_parse(xml_templates.enum_valutes, args_data)

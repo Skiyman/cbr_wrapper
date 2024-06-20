@@ -33,4 +33,4 @@ class MajorCurrencyModel(BaseModel):
 
 class CurseDynamicModel(BaseModel):
     currency_date: str
-    currency_rate: str
+    currency_rate: float

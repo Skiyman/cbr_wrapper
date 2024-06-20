@@ -1,8 +1,12 @@
 version: '3.9'
 
 services:
-  app:
+  backend:
     build: .
-    image: cbrwrapper
+    image: cbrwrapper-backend
     ports:
-      - "8000:8000"
+      - "1488:8000"
+  frontend:
+    image: cbrwrapper-frontend
+    ports:
+      - "5432:3000"

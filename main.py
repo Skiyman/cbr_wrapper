@@ -9,12 +9,11 @@ from routers.enum_currencies import enum_currencies_router
 app = FastAPI()
 
 origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
-    "http://localhost:8080",
     "*"
 ]
+
+app.include_router(currency_router)
+app.include_router(enum_currencies_router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,9 +22,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-app.include_router(currency_router)
-app.include_router(enum_currencies_router)
 
 if __name__ == "__main__":
     uvicorn.run('main:app', reload=True)

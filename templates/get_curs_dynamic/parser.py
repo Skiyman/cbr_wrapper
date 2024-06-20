@@ -14,7 +14,7 @@ class GetCursDynamicParser(IParser):
             currency_rate = currency.find("Vcurs").text
             response.append({
                 "currency_date": currency_date,
-                "currency_rate": currency_rate
+                "currency_rate": round(float(currency_rate), 2)
             })
 
         return response
