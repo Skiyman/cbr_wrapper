@@ -10,4 +10,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["uvicorn", "--host", "0.0.0.0", "main:app", "--reload"]
+CMD ["gunicorn", "main:app", "--worker-class","uvicorn.workers.UvicornWorker"]
